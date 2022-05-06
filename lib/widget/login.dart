@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
 //import 'package:firebase_auth_email/main.dart';
 //import 'package:firebase_auth_email/utils/utils.dart';
 import 'package:flutter/gestures.dart';
@@ -31,13 +30,14 @@ class _LoginWidgetState extends State<LoginWidget> {
             SizedBox(height: 40),
             TextField(
               controller: emailController,
-              cursorColor: Colors.white,
+              cursorColor: Colors.black,
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(labelText: 'Email'),
             ),
             SizedBox(height: 4),
             TextField(
               controller: passwordController,
+              cursorColor: Colors.black,
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(labelText: 'Password'),
               obscureText: true,
@@ -52,9 +52,16 @@ class _LoginWidgetState extends State<LoginWidget> {
                 'Sign In',
                 style: TextStyle(fontSize: 24),
               ),
-              onPressed: () {},
+              onPressed: signIn,
             ),
           ],
         ),
       );
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    );
+  }
 }
