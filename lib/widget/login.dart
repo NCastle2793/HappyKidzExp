@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 //import 'package:firebase_auth_email/main.dart';
 //import 'package:firebase_auth_email/utils/utils.dart';
 import 'package:flutter/gestures.dart';
@@ -59,7 +60,7 @@ class _LoginWidgetState extends State<LoginWidget> {
       );
 
   Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
+    return await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: emailController.text.trim(),
       password: passwordController.text.trim(),
     );

@@ -4,18 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:happy_kidz_exp/page/home.dart';
 import 'package:happy_kidz_exp/widget/login.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MainPage(),
+      home: MainPage(), // The home page will show whatever widget is in the wrapper.
     );
   }
 }
@@ -24,6 +20,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         body: StreamBuilder<User?>(
+          future: Firebase.initializeApp(),
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
