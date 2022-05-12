@@ -1,7 +1,7 @@
-//import 'package:email_validator?email_Validator.dart;';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:happy_kidz_exp/main.dart';
+import 'package:happy_kidz_exp/utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -66,7 +66,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               decoration: InputDecoration(labelText: 'Password'),
               obscureText: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (value) => value != null && value.length < 6
+              validator: (value) => value != null && value.length < 8
                   ? 'Enter min. 8 characters'
                   : null,
             ),
@@ -130,6 +130,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       );
     } on FirebaseAuthException catch (e) {
       print(e);
+
+      Utils.showSnackBar(e.message);
     }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
