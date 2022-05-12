@@ -89,7 +89,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
             SizedBox(height: 24),
             RichText(
               text: TextSpan(
-                style: TextStyle(color: Colors.black, fontSize: 15),
+                style: TextStyle(color: Colors.black, fontSize: 18),
                 text: 'Already have an account?  ',
                 children: [
                   TextSpan(
@@ -99,7 +99,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     style: TextStyle(
                         decoration: TextDecoration.underline,
                         color: Colors.green,
-                        fontSize: 15),
+                        fontSize: 18),
                   ),
                 ],
               ),

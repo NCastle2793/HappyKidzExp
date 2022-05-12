@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:happy_kidz_exp/main.dart';
 import 'package:happy_kidz_exp/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:happy_kidz_exp/page/forgot_password.dart';
 
 class LoginWidget extends StatefulWidget {
   final VoidCallback onClickedSignUp;
@@ -89,9 +90,23 @@ class _LoginWidgetState extends State<LoginWidget> {
                 ),
               ),
               SizedBox(height: 24),
+              GestureDetector(
+                child: Text(
+                  'Forgot Password?',
+                  style: TextStyle(
+                    decoration: TextDecoration.underline,
+                    color: Colors.green,
+                    fontSize: 18,
+                  ),
+                ),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ForgotPassword(),
+                )),
+              ),
+              SizedBox(height: 5),
               RichText(
                 text: TextSpan(
-                  style: TextStyle(color: Colors.black, fontSize: 15),
+                  style: TextStyle(color: Colors.black, fontSize: 18),
                   text: 'No account?  ',
                   children: [
                     TextSpan(
@@ -101,7 +116,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                       style: TextStyle(
                           decoration: TextDecoration.underline,
                           color: Colors.green,
-                          fontSize: 15),
+                          fontSize: 18),
                     ),
                   ],
                 ),
