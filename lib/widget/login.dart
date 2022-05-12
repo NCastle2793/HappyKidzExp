@@ -4,14 +4,13 @@ import 'package:flutter/gestures.dart';
 import 'package:happy_kidz_exp/main.dart';
 import 'package:flutter/material.dart';
 
-
 class LoginWidget extends StatefulWidget {
   final VoidCallback onClickedSignUp;
 
   const LoginWidget({
     Key? key,
     required this.onClickedSignUp,
-}) : super(key: key);
+  }) : super(key: key);
 
   @override
   _LoginWidgetState createState() => _LoginWidgetState();
@@ -71,8 +70,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   'Sign In',
                   style: TextStyle(fontSize: 24),
                 ),
-                onPressed:
-                    signIn, // Calling signIn method.
+                onPressed: signIn, // Calling signIn method.
               ),
             ),
             SizedBox(height: 24),
@@ -83,7 +81,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 children: [
                   TextSpan(
                     recognizer: TapGestureRecognizer()
-                    ..onTap = widget.onClickedSignUp,
+                      ..onTap = widget.onClickedSignUp,
                     text: 'Sign Up',
                     style: TextStyle(
                         decoration: TextDecoration.underline,
