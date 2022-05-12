@@ -60,11 +60,32 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         'Reset Password',
                         style: TextStyle(fontSize: 24),
                       ),
-                      onPressed: () {}),
+                      onPressed: resetPassword),
                 )
               ],
             ),
           ),
         ),
       );
+
+  Future resetPassword() async {
+    // Loading indicator for sign up.
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(child: CircularProgressIndicator()),
+    );
+
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: emailController.text.trim());
+
+      Utils.showSnackBar('Password Reset Email Sent');
+      Navigator.of(context).popUntil((route) => route.isFirst);
+    } on FirebaseAuthException catch (e) {
+      print(e);
+      Utils.showSnackBar(e.message);
+      Navigator.of(context).pop();
+    }
+  }
 }
