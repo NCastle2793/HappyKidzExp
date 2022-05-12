@@ -3,12 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:happy_kidz_exp/utils.dart';
 import 'package:flutter/material.dart';
 
-class ForgotPassword extends StatefulWidget {
+class ForgotPasswordPage extends StatefulWidget {
   @override
-  _ForgotPasswordState createState() => _ForgotPasswordState();
+  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
 }
 
-class _ForgotPasswordState extends State<ForgotPassword> {
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
 
@@ -30,7 +30,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Recieve an email to\nreset your password',
+                  'Receive an email to\nreset your password',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 24),
                 ),

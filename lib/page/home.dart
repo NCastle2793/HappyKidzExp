@@ -8,7 +8,9 @@ class HomePage extends StatelessWidget {
         FirebaseAuth.instance.currentUser!; // Used to access user info.
 
     return Scaffold(
+      backgroundColor: Color(0xffFCFCB8),
       appBar: AppBar(
+        backgroundColor: Color(0xff07B300),
         title: Text('Home'),
       ),
       body: Padding(
@@ -25,17 +27,21 @@ class HomePage extends StatelessWidget {
               user.email!, // Displays user email.
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size.fromHeight(50),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  primary: Color(0xff07B300),
+                  minimumSize: Size.fromHeight(55),
+                ),
+                icon: Icon(Icons.arrow_back, size: 32),
+                label: Text(
+                  'Sign Out',
+                  style: TextStyle(fontSize: 24),
+                ),
+                onPressed: () => FirebaseAuth.instance
+                    .signOut(), // Calling Firebase signOut method from Firebase auth package.
               ),
-              icon: Icon(Icons.arrow_back, size: 32),
-              label: Text(
-                'Sign Out',
-                style: TextStyle(fontSize: 24),
-              ),
-              onPressed: () => FirebaseAuth.instance
-                  .signOut(), // Calling Firebase signOut method from Firebase auth package.
             ),
           ],
         ),

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:happy_kidz_exp/page/home.dart';
+import 'package:happy_kidz_exp/page/verify_email.dart';
 import 'package:happy_kidz_exp/utils.dart';
 //import 'package:happy_kidz_exp/widget/login.dart';
 import 'package:happy_kidz_exp/page/auth.dart';
@@ -42,7 +43,7 @@ class MainPage extends StatelessWidget {
                   child: Text(
                       'Something went wrong')); // Error message for when something went wrong.
             } else if (snapshot.hasData) {
-              return HomePage(); // If logged in, return homepage.
+              return VerifyEmailPage(); // If logged in, return homepage.
             } else {
               return AuthPage(); // If logged out, return login page.
             }

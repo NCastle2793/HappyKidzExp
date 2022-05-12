@@ -100,7 +100,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   ),
                 ),
                 onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ForgotPassword(),
+                    builder: (context) => ForgotPasswordPage(),
                 )),
               ),
               SizedBox(height: 5),
