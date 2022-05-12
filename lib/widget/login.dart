@@ -1,13 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-//import 'package:firebase_auth_email/main.dart';
-//import 'package:firebase_auth_email/utils/utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:happy_kidz_exp/main.dart';
 import 'package:flutter/material.dart';
 
+
 class LoginWidget extends StatefulWidget {
+  final VoidCallback onClickedSignUp;
+
+  const LoginWidget({
+    Key? key,
+    required this.onClickedSignUp,
+}) : super(key: key);
+
   @override
   _LoginWidgetState createState() => _LoginWidgetState();
 }
@@ -67,7 +72,25 @@ class _LoginWidgetState extends State<LoginWidget> {
                   style: TextStyle(fontSize: 24),
                 ),
                 onPressed:
-                    signIn, // Calling signIn method from Firebase auth package.
+                    signIn, // Calling signIn method.
+              ),
+            ),
+            SizedBox(height: 24),
+            RichText(
+              text: TextSpan(
+                style: TextStyle(color: Colors.black, fontSize: 15),
+                text: 'No account?  ',
+                children: [
+                  TextSpan(
+                    recognizer: TapGestureRecognizer()
+                    ..onTap = widget.onClickedSignUp,
+                    text: 'Sign Up',
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.green,
+                        fontSize: 15),
+                  ),
+                ],
               ),
             ),
           ],

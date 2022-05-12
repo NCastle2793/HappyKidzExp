@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:happy_kidz_exp/page/home.dart';
-import 'package:happy_kidz_exp/widget/login.dart';
+
+//import 'package:happy_kidz_exp/widget/login.dart';
+import 'package:happy_kidz_exp/page/auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +43,7 @@ class MainPage extends StatelessWidget {
             } else if (snapshot.hasData) {
               return HomePage(); // If logged in, return homepage.
             } else {
-              return LoginWidget(); // If logged out, return login page.
+              return AuthPage(); // If logged out, return login page.
             }
           },
         ),
