@@ -10,24 +10,35 @@ void main() async {
   runApp(MyApp());
 }
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MainPage(), // The home page will show whatever widget is in the wrapper.
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        navigatorKey: navigatorKey,
+        home: MainPage(),
+      );
 }
 
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Color(0xffFCFCB8),
-        body: StreamBuilder<User?>( // StreamBuilder listens to exposed streams and returns widgets and catches snapshots of stream info.
-          stream: FirebaseAuth.instance.authStateChanges(), // Calling authStateChanges method from FirebaseAuth package to see login changes.
+        backgroundColor: Color(0xffFCFCB8),
+        body: StreamBuilder<User?>(
+          // StreamBuilder listens to exposed streams and returns widgets and catches snapshots of stream info.
+          stream: FirebaseAuth.instance.authStateChanges(),
+          // Calling authStateChanges method from FirebaseAuth package to see login changes.
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                  child:
+                      CircularProgressIndicator()); // Loading indicator for waiting.
+            } else if (snapshot.hasError) {
+              return Center(
+                  child: Text(
+                      'Something went wrong')); // Error message for when something went wrong.
+            } else if (snapshot.hasData) {
               return HomePage(); // If logged in, return homepage.
             } else {
               return LoginWidget(); // If logged out, return login page.

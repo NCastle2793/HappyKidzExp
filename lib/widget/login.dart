@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+
 //import 'package:firebase_auth_email/main.dart';
 //import 'package:firebase_auth_email/utils/utils.dart';
 import 'package:flutter/gestures.dart';
+import 'package:happy_kidz_exp/main.dart';
 import 'package:flutter/material.dart';
 
 class LoginWidget extends StatefulWidget {
@@ -44,7 +46,8 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
             SizedBox(height: 4),
             TextField(
-              controller: passwordController, // Controller attached to text field.
+              controller: passwordController,
+              // Controller attached to text field.
               cursorColor: Colors.black,
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(labelText: 'Password'),
@@ -63,7 +66,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                   'Sign In',
                   style: TextStyle(fontSize: 24),
                 ),
-                onPressed: signIn, // Calling signIn method from Firebase auth package.
+                onPressed:
+                    signIn, // Calling signIn method from Firebase auth package.
               ),
             ),
           ],
@@ -71,9 +75,25 @@ class _LoginWidgetState extends State<LoginWidget> {
       );
 
   Future signIn() async {
-    return await FirebaseAuth.instance.signInWithEmailAndPassword( // Calling signInWithEmailAndPassword method from FirebaseAuth package.
-      email: emailController.text.trim(), // Gets input from the email text field via controllers.
-      password: passwordController.text.trim(), // Gets input from the password text field via controllers.
+    // Loading indicator for sign in.
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => Center(child: CircularProgressIndicator()),
     );
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        // Calling signInWithEmailAndPassword method from FirebaseAuth package.
+        email: emailController.text.trim(),
+        // Gets input from the email text field via controllers.
+        password: passwordController.text
+            .trim(), // Gets input from the password text field via controllers.
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
