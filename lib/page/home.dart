@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser!;
+    final user = FirebaseAuth.instance.currentUser!; // Used to access user info.
 
     return Scaffold(
       appBar: AppBar(
@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              user.email!,
+              user.email!, // Displays user email.
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             ElevatedButton.icon(
@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                 'Sign Out',
                 style: TextStyle(fontSize: 24),
               ),
-              onPressed: () => FirebaseAuth.instance.signOut(),
+              onPressed: () => FirebaseAuth.instance.signOut(), // Calling Firebase signOut method from Firebase auth package.
             ),
           ],
         ),

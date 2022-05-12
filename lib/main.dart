@@ -23,13 +23,14 @@ class MyApp extends StatelessWidget {
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
+    backgroundColor: Color(0xffFCFCB8),
+        body: StreamBuilder<User?>( // StreamBuilder listens to exposed streams and returns widgets and catches snapshots of stream info.
+          stream: FirebaseAuth.instance.authStateChanges(), // Calling authStateChanges method from FirebaseAuth package to see login changes.
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return HomePage();
+              return HomePage(); // If logged in, return homepage.
             } else {
-              return LoginWidget();
+              return LoginWidget(); // If logged out, return login page.
             }
           },
         ),
