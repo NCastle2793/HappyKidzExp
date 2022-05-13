@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:happy_kidz_exp/widget/custom_navbar.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -46,6 +47,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: CustomNavBar(),
     );
   }
 }
