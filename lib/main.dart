@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:happy_kidz_exp/config/app_router.dart';
 import 'package:happy_kidz_exp/page/home.dart';
 import 'package:happy_kidz_exp/page/verify_email.dart';
 import 'package:happy_kidz_exp/utils.dart';
 //import 'package:happy_kidz_exp/widget/login.dart';
 import 'package:happy_kidz_exp/page/auth.dart';
+import 'package:happy_kidz_exp/page/pages.dart';
+import 'package:happy_kidz_exp/widget/widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +25,8 @@ class MyApp extends StatelessWidget {
     scaffoldMessengerKey: Utils.messengerKey,
         navigatorKey: navigatorKey,
         home: MainPage(),
+    onGenerateRoute: AppRouter.onGenerateRoute,
+    initialRoute: HomePage.routeName,
       );
 }
 
@@ -43,7 +48,7 @@ class MainPage extends StatelessWidget {
                   child: Text(
                       'Something went wrong')); // Error message for when something went wrong.
             } else if (snapshot.hasData) {
-              return VerifyEmailPage(); // If logged in, return homepage.
+              return VerifyEmailPage(); // If logged for the first time, returns verification page.
             } else {
               return AuthPage(); // If logged out, return login page.
             }

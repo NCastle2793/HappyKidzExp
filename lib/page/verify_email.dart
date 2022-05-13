@@ -62,9 +62,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   @override
   Widget build(BuildContext context) => isEmailVerified
-      ? HomePage()
+      ? HomePage() // If the user has already verified their account then the home screen will be returned.
       : Scaffold(
-    backgroundColor: Color(0xffFCFCB8),
+          backgroundColor: Color(0xffFCFCB8),
           body: Padding(
             padding: EdgeInsets.all(16),
             child: Column(
@@ -102,8 +102,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                         'Cancel',
                         style: TextStyle(fontSize: 24),
                       ),
-                      onPressed: () => FirebaseAuth.instance.signOut()
-                  ),
+                      onPressed: () => FirebaseAuth.instance.signOut()),
                 ),
               ],
             ),

@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:happy_kidz_exp/widget/custom_navbar.dart';
 
 class HomePage extends StatelessWidget {
+  static const String routeName = '/';
+
+  static Route route() {
+    return MaterialPageRoute(
+        settings: RouteSettings(name: routeName), builder: (_) => HomePage());
+  }
+
   @override
   Widget build(BuildContext context) {
     final user =
